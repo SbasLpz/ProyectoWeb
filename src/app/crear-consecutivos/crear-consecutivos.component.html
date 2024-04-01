@@ -1,0 +1,11 @@
+<p>crear-consecutivos works!</p>
+<div class="contenedor">
+    <p>Tipo consecutivo: <input type="text" [(ngModel)]="consecutivo.tipo"></p>
+    <p>Descripción: <input type="text" [(ngModel)]="consecutivo.descripcion"></p>
+    <p>Valor: <input type="number" readonly [(ngModel)]="consecutivo.valor"></p>
+    <p>Prefijo: <input [readOnly]="!prefijoDisponible" type="text" maxlength="5" (input)="consecutivoValido($event)" style="text-transform: uppercase;" [(ngModel)]="consecutivo.prefijo"></p>
+    <p><input #tienePrefijo type="checkbox" name="tienePrejifo" id="tienePrejifo" (change)="checkboxCambio(tienePrefijo)"> Contiene prefijo</p>
+
+    <p><button (click)="agregar()" class="btn btn-success">Agregar</button><button class="btn btn-danger" (click)="limpiar()">Cancelar</button></p>
+
+</div>

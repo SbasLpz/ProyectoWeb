@@ -1,0 +1,91 @@
+<!-- <p>crear-comestibles works!</p>
+<p>crear-consecutivos works!</p> -->
+
+<div class="contenedor" style="display: block;">
+    <div class="row">
+        <div class="col" style="display: grid; justify-content: center;">
+            <h1>Crear comestible</h1>
+            <br><br>
+            <!-- <p>Código: <input type="text" [(ngModel)]="comestible.codigo" readonly></p> -->
+            <form [formGroup]="formularioCrear" (ngSubmit)="submit($event)">
+                <p>
+                    Código:
+                    @if (consecutivos.length < 1) {
+                        <p>Código: <input type="text" formControlName="codigo"></p>
+                    } @else {
+                        <select formControlName="codigo">
+                            <option value="" disabled selected>Elija una opción</option>
+                            @for (consec of consecutivos; track $index) {
+                                <option [value]="consec.prefijo">{{consec.prefijo}}</option>
+                            }
+                        </select>
+                    }
+                </p>
+                <p>
+                    Nombre: <input type="text" formControlName="nombre">
+                    @if (this.formularioCrear.get('nombre')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                </p>
+                <p>Cantidad: <input type="number" formControlName="cantidad"></p>
+                <p>
+                    Tipo de comestible:
+                    <select formControlName="tipo">
+                        <option value="Frutas">Frutas</option>
+                        <option value="Cacao">Cacao</option>
+                        <option value="Carnes">Carnes</option>
+                        <option value="Aceites">Aceites</option>
+                        <option value="Cereales">Cereales</option>
+                        <option value="Vegetales">Vegetales</option>
+                        <option value="Legumbres">Legumbres</option>
+                        <option value="Frutos secos">Frutos secos</option>
+                    </select>
+                </p>
+                <p>
+                    Restaurante: <input type="text" readonly formControlName="restaurante">
+                </p>
+                <p>Marca: <input type="text" formControlName="marca"></p>
+                <p>
+                    Clase de comestible: 
+                    <select formControlName="clase">
+                        <option value="Fibra">Fibra</option>
+                        <option value="Grasas">Grasas</option>
+                        <option value="Proteínas">Proteínas</option>
+                        <option value="Vitaminas">Vitaminas</option>
+                        <option value="Minerales">Minerales</option>
+                        <option value="Carbohidratos">Carbohidratos</option>
+                    </select>
+                </p>
+                <p>
+                    Línea de comestible: 
+                    <select formControlName="linea">
+                        <option value="Secos">Secos</option>
+                        <option value="Congelados">Congelados</option>
+                        <option value="Refrigerados">Refrigerados</option>
+                    </select>
+                </p>
+                <p>
+                    Unidad de medida:
+                    <select formControlName="unidad">
+                        <option value="" disabled selected>Elija una opción</option>
+                        @for (medida of medidas; track $index) {
+                            <option [value]="medida.unidad">{{medida.unidad}}</option>
+                        }
+                    </select>
+                </p>
+                <div style="display: flex;">
+                    <button type="submit" class="btn btn-success" style="margin-right: 10px;">Crear</button>
+                    <button type="button" class="btn btn-danger">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-5">
+            <img src="assets/imgs/comestibles.jpg" alt="" width="60%" height="600vh">
+        </div>
+    </div>
+    <!-- <p>Prefijo: <input [readOnly]="!prefijoDisponible" type="text" maxlength="5" (input)="consecutivoValido($event)" style="text-transform: uppercase;" [(ngModel)]="consecutivo.prefijo"></p>
+    <p><input #tienePrefijo type="checkbox" name="tienePrejifo" id="tienePrejifo" (change)="checkboxCambio(tienePrefijo)"> Contiene prefijo</p>
+
+    <p><button (click)="agregar()" class="btn btn-success">Agregar</button><button class="btn btn-danger" (click)="limpiar()">Cancelar</button></p> -->
+</div>

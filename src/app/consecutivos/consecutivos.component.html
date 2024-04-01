@@ -1,0 +1,48 @@
+<p>consecutivos works!</p>
+
+<div>
+    <h2>Mantenimiento de consecutivos</h2>
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Descripción</th>
+                <th>Valor del consecutivo</th>
+                <th>Prefijo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (consecutivo of consecutivos; track consecutivo.idn) {
+                <tr >
+                    <td>{{consecutivo.idn}}</td>
+                    <td style="text-transform: uppercase;" *ngIf="!consecutivo.editMode">{{consecutivo.prefijo}}</td>
+                    <td *ngIf="consecutivo.editMode && consecutivo.prefijoDisponible"><input style="text-transform: uppercase;" maxlength="5" (input)="consecutivoValido($event)" type="text" [(ngModel)]="consecutivo.prefijo"></td>
+                    <td *ngIf="consecutivo.editMode && !consecutivo.prefijoDisponible"><input type="text" value="-" (load)="consecutivo.prefijo='-'" readonly></td>
+
+                    <td *ngIf="!consecutivo.editMode">{{consecutivo.tipo}}</td>
+                    <td *ngIf="consecutivo.editMode"><input type="text" [(ngModel)]="consecutivo.tipo"></td>
+
+                    <td *ngIf="!consecutivo.editMode">{{consecutivo.descripcion}}</td>
+                    <td *ngIf="consecutivo.editMode"><input type="text" [(ngModel)]="consecutivo.descripcion"></td>
+
+                    <td>{{consecutivo.valor}}</td>
+                    
+                    <td *ngIf="!consecutivo.editMode">{{consecutivo.prefijoDisponible}}</td>
+                    <td *ngIf="consecutivo.editMode"><input type="checkbox" [(ngModel)]="consecutivo.prefijoDisponible"></td>
+
+                    <td>
+                        <button (click)="toggleEditMode(consecutivo)" class="btn btn-primary">Modificar</button>
+                        <button (click)="eliminar(consecutivo.idn)" class="btn btn-danger">Eliminar</button>
+                        <button *ngIf="consecutivo.editMode" (click)="actualizar(consecutivo)" class="btn btn-success">Acpetar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
