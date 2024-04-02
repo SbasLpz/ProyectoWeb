@@ -1,0 +1,48 @@
+<p>comestibles works!</p>
+
+<div>
+    <h2>Mantenimineto comestibles</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Restaurante</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (comestible of comestibles; track $index) {
+                <tr >
+                    <td>{{comestible.codigo}}</td>
+                    <!-- <td style="text-transform: uppercase;" *ngIf="!consecutivo.editMode">{{consecutivo.prefijo}}</td>
+                    <td *ngIf="consecutivo.editMode && consecutivo.prefijoDisponible"><input style="text-transform: uppercase;" maxlength="5" (input)="consecutivoValido($event)" type="text" [(ngModel)]="consecutivo.prefijo"></td>
+                    <td *ngIf="consecutivo.editMode && !consecutivo.prefijoDisponible"><input type="text" value="-" (load)="consecutivo.prefijo='-'" readonly></td> -->
+
+                    <td *ngIf="!comestible.editMode">{{comestible.nombre}}</td>
+                    <td *ngIf="comestible.editMode"><input type="text" [(ngModel)]="comestible.nombre"></td>
+
+                    <td *ngIf="!comestible.editMode">{{comestible.cantidad}}</td>
+                    <td *ngIf="comestible.editMode"><input type="text" [(ngModel)]="comestible.cantidad"></td>
+
+                    <td *ngIf="!comestible.editMode">{{comestible.restaurante}}</td>
+                    <td *ngIf="comestible.editMode">
+                        <select name="" id="" [(ngModel)]="comestible.restaurante">
+                            <option [value]="comestible.restaurante">{{comestible.restaurante}}</option>
+                            <option value="RESTAURANTE 2">RESTAURANTE 2</option>
+                            <option value="Mi Rest 03">Mi Rest 03</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <button (click)="toggleEditMode(comestible)" class="btn btn-primary">Modificar</button>
+                        <button (click)="eliminar(comestible)" class="btn btn-danger">Eliminar</button>
+                        <button *ngIf="comestible.editMode" (click)="actualizar(comestible)" class="btn btn-success">Acpetar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  
