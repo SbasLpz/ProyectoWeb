@@ -9,6 +9,7 @@ export interface IComestible {
     clase:string;
     linea:string;
     unidad:string;
+    checked: boolean;
     __v:number;
 }
 

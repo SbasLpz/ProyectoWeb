@@ -20,6 +20,9 @@
                             }
                         </select>
                     }
+                    @if (this.formularioCrear.get('codigo')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
                 </p>
                 <p>
                     Nombre: <input type="text" formControlName="nombre">
@@ -27,7 +30,18 @@
                         <span>(Campo requerido)</span>
                     }
                 </p>
-                <p>Cantidad: <input type="number" formControlName="cantidad"></p>
+                <p>
+                    Cantidad: <input type="number" formControlName="cantidad">
+                    @if (this.formularioCrear.get('cantidad')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                    @if (this.formularioCrear.get('cantidad')?.errors?.['max']) {
+                        <span>(La cantidad no puede ser mayor a 50)</span>
+                    }
+                    @if (this.formularioCrear.get('cantidad')?.errors?.['min']) {
+                        <span>(La cantidad tiene que ser mayor que 0)</span>
+                    }
+                </p>
                 <p>
                     Tipo de comestible:
                     <select formControlName="tipo">
@@ -44,7 +58,12 @@
                 <p>
                     Restaurante: <input type="text" readonly formControlName="restaurante">
                 </p>
-                <p>Marca: <input type="text" formControlName="marca"></p>
+                <p>
+                    Marca: <input type="text" formControlName="marca">
+                    @if (this.formularioCrear.get('marca')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                </p>
                 <p>
                     Clase de comestible: 
                     <select formControlName="clase">
@@ -72,16 +91,19 @@
                             <option [value]="medida.unidad">{{medida.unidad}}</option>
                         }
                     </select>
+                    @if (this.formularioCrear.get('unidad')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
                 </p>
                 <div style="display: flex;">
                     <button type="submit" class="btn btn-success" style="margin-right: 10px;">Crear</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
                 </div>
             </form>
         </div>
 
         <div class="col-5">
-            <img src="assets/imgs/comestibles.jpg" alt="" width="60%" height="600vh">
+            <img src="assets/imgs/comestibles.jpg" alt="" width="60%" height="100%">
         </div>
     </div>
     <!-- <p>Prefijo: <input [readOnly]="!prefijoDisponible" type="text" maxlength="5" (input)="consecutivoValido($event)" style="text-transform: uppercase;" [(ngModel)]="consecutivo.prefijo"></p>

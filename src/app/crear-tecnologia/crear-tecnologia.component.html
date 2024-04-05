@@ -1,0 +1,78 @@
+<p>crear-tecnologia works!</p>
+
+<div class="contenedor" style="display: block;">
+    <div class="row">
+        <div class="col" style="display: grid; justify-content: center;">
+            
+            <form [formGroup]="formularioCrear" (ngSubmit)="submit($event)">
+                <h1>Crear elementos tecnológicos</h1>
+                <br><br>
+                <p>
+                    Código:
+                    @if (consecutivos.length < 1) {
+                        <p>Código: <input type="text" formControlName="codigo"></p>
+                    } @else {
+                        <select formControlName="codigo">
+                            <option value="" disabled selected>Elija una opción</option>
+                            @for (consec of consecutivos; track $index) {
+                                <option [value]="consec.prefijo">{{consec.prefijo}}</option>
+                            }
+                        </select>
+                    }
+                    @if (this.formularioCrear.get('codigo')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                </p>
+                <p>
+                    Restaurante: <input type="text" readonly formControlName="restaurante">
+                </p>
+                <p>
+                    Nombre: <input type="text" formControlName="nombre">
+                    @if (this.formularioCrear.get('nombre')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                </p>
+                <p>
+                    Marca: 
+                    <!-- <input type="text" formControlName="marca"> -->
+                    <select formControlName="marca">
+                        <option value="" disabled selected>Elija una opción</option>
+                        <option value="Marca 1">Marca 01</option>
+                        <option value="Marca 2*">Marca 2*</option>
+                        <option value="Marca _3">Marca _3</option>
+                    </select>
+                    @if (this.formularioCrear.get('marca')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                </p>
+                <p>
+                    Cantidad: <input type="number" formControlName="cantidad">
+                    @if (this.formularioCrear.get('cantidad')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                    @if (this.formularioCrear.get('cantidad')?.errors?.['max']) {
+                        <span>(La cantidad no puede ser mayor a 50)</span>
+                    }
+                    @if (this.formularioCrear.get('cantidad')?.errors?.['min']) {
+                        <span>(La cantidad tiene que ser mayor que 0)</span>
+                    }
+                </p>
+                <p>
+                    Descripción: <input type="text" formControlName="descripcion">
+                    @if (this.formularioCrear.get('descripcion')?.errors?.['required']) {
+                        <span>(Campo requerido)</span>
+                    }
+                </p>
+                
+                <div style="display: flex;">
+                    <button type="submit" class="btn btn-success" style="margin-right: 10px;">Crear</button>
+                    <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-5">
+            <img src="assets/imgs/tec.jpg" alt="" width="60%" height="100%">
+        </div>
+    </div>
+</div>

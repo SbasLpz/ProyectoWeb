@@ -1,0 +1,55 @@
+<p>limpieza works!</p>
+
+<div>
+    <h2>Mantenimineto limpieza e higiene</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Restaurante</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (limpieza of limpiezas; track $index) {
+                <tr >
+                    <td *ngIf="!limpieza.editMode">{{limpieza.codigo}}</td>
+                    <td *ngIf="limpieza.editMode">
+                        <select name="" id="" [(ngModel)]="limpieza.codigo">
+                            @for (consec of consecutivos; track $index) {
+                                <option [value]="consec.prefijo">{{consec.prefijo}}</option>
+                            }
+                        </select>
+                    </td>
+                    <!-- <td style="text-transform: uppercase;" *ngIf="!consecutivo.editMode">{{consecutivo.prefijo}}</td>
+                    <td *ngIf="consecutivo.editMode && consecutivo.prefijoDisponible"><input style="text-transform: uppercase;" maxlength="5" (input)="consecutivoValido($event)" type="text" [(ngModel)]="consecutivo.prefijo"></td>
+                    <td *ngIf="consecutivo.editMode && !consecutivo.prefijoDisponible"><input type="text" value="-" (load)="consecutivo.prefijo='-'" readonly></td> -->
+
+                    <td *ngIf="!limpieza.editMode">{{limpieza.nombre}}</td>
+                    <td *ngIf="limpieza.editMode"><input type="text" [(ngModel)]="limpieza.nombre"></td>
+
+                    <td *ngIf="!limpieza.editMode">{{limpieza.cantidad}}</td>
+                    <td *ngIf="limpieza.editMode"><input type="text" [(ngModel)]="limpieza.cantidad"></td>
+
+                    <td *ngIf="!limpieza.editMode">{{limpieza.restaurante}}</td>
+                    <td *ngIf="limpieza.editMode">
+                        <select name="" id="" [(ngModel)]="limpieza.restaurante">
+                            <option [value]="limpieza.restaurante">{{limpieza.restaurante}}</option>
+                            <option value="RESTAURANTE 2">RESTAURANTE 2</option>
+                            <option value="Mi Rest 03">Mi Rest 03</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <button (click)="toggleEditMode(limpieza)" class="btn btn-primary">Modificar</button>
+                        <button (click)="eliminar(limpieza)" class="btn btn-danger">Eliminar</button>
+                        <button *ngIf="limpieza.editMode" (click)="actualizar(limpieza)" class="btn btn-success">Acpetar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

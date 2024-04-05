@@ -43,7 +43,7 @@ export class CrearComestiblesComponent {
     this.formularioCrear = new FormGroup({
       codigo: new FormControl('', [Validators.required]),
       nombre: new FormControl('', [Validators.required]),
-      cantidad: new FormControl('', [Validators.required]),
+      cantidad: new FormControl('', [Validators.required, Validators.max(50), Validators.min(1)]),
       tipo: new FormControl('Frutas'),
       restaurante: new FormControl(AppConfig.restActual),
       marca: new FormControl('', [Validators.required]),
@@ -73,14 +73,20 @@ export class CrearComestiblesComponent {
         (data) => {
           // La solicitud fue exitosa, puedes realizar acciones adicionales si es necesario
           console.log('La solicitud fue exitosa:', data);
+          alert("Se creo el comestible exitosamente")
+          location.reload()
         },
         (error) => {
           // Ocurrió un error durante la solicitud, puedes manejarlo aquí
           console.error('Ocurrió un error:', error);
+          alert("Error: "+error)
         }
       );
     }
+  }
 
+  cancelar(){
+    location.reload();
   }
 
 }

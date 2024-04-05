@@ -1,0 +1,55 @@
+<p>tecnologias works!</p>
+
+<div>
+    <h2>Mantenimineto limpieza e higiene</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Restaurante</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (tec of tecs; track $index) {
+                <tr >
+                    <td *ngIf="!tec.editMode">{{tec.codigo}}</td>
+                    <td *ngIf="tec.editMode">
+                        <select name="" id="" [(ngModel)]="tec.codigo">
+                            @for (consec of consecutivos; track $index) {
+                                <option [value]="consec.prefijo">{{consec.prefijo}}</option>
+                            }
+                        </select>
+                    </td>
+                    <!-- <td style="text-transform: uppercase;" *ngIf="!consecutivo.editMode">{{consecutivo.prefijo}}</td>
+                    <td *ngIf="consecutivo.editMode && consecutivo.prefijoDisponible"><input style="text-transform: uppercase;" maxlength="5" (input)="consecutivoValido($event)" type="text" [(ngModel)]="consecutivo.prefijo"></td>
+                    <td *ngIf="consecutivo.editMode && !consecutivo.prefijoDisponible"><input type="text" value="-" (load)="consecutivo.prefijo='-'" readonly></td> -->
+
+                    <td *ngIf="!tec.editMode">{{tec.nombre}}</td>
+                    <td *ngIf="tec.editMode"><input type="text" [(ngModel)]="tec.nombre"></td>
+
+                    <td *ngIf="!tec.editMode">{{tec.cantidad}}</td>
+                    <td *ngIf="tec.editMode"><input type="text" [(ngModel)]="tec.cantidad"></td>
+
+                    <td *ngIf="!tec.editMode">{{tec.restaurante}}</td>
+                    <td *ngIf="tec.editMode">
+                        <select name="" id="" [(ngModel)]="tec.restaurante">
+                            <option [value]="tec.restaurante">{{tec.restaurante}}</option>
+                            <option value="RESTAURANTE 2">RESTAURANTE 2</option>
+                            <option value="Mi Rest 03">Mi Rest 03</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <button (click)="toggleEditMode(tec)" class="btn btn-primary">Modificar</button>
+                        <button (click)="eliminar(tec)" class="btn btn-danger">Eliminar</button>
+                        <button *ngIf="tec.editMode" (click)="actualizar(tec)" class="btn btn-success">Acpetar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

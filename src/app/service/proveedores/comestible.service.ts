@@ -16,10 +16,10 @@ export class ComestibleService {
   constructor(private http:HttpClient) { }
 
   getComestibles():Observable<IComestible[]>{
-    return this.http.get<IComestible[]>(this.URL);
+    return this.http.get<IComestible[]>(this.URL+"s");
   }
 
-  addComestible(profesor:IComestibleUpdate):Observable<IComestible>{
-    return this.http.post<IComestible>(this.URL, profesor, this.httpOptions);
+  addComestible(comestible:IComestibleUpdate):Observable<IComestible>{
+    return this.http.post<IComestible>(this.URL, comestible, this.httpOptions);
   }
 }

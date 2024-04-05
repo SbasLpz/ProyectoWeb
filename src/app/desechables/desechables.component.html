@@ -1,0 +1,55 @@
+<p>desechables works!</p>
+
+<div>
+    <h2>Mantenimineto desechables y empaques</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Restaurante</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (desechable of desechables; track $index) {
+                <tr >
+                    <td *ngIf="!desechable.editMode">{{desechable.codigo}}</td>
+                    <td *ngIf="desechable.editMode">
+                        <select name="" id="" [(ngModel)]="desechable.codigo">
+                            @for (consec of consecutivos; track $index) {
+                                <option [value]="consec.prefijo">{{consec.prefijo}}</option>
+                            }
+                        </select>
+                    </td>
+                    <!-- <td style="text-transform: uppercase;" *ngIf="!consecutivo.editMode">{{consecutivo.prefijo}}</td>
+                    <td *ngIf="consecutivo.editMode && consecutivo.prefijoDisponible"><input style="text-transform: uppercase;" maxlength="5" (input)="consecutivoValido($event)" type="text" [(ngModel)]="consecutivo.prefijo"></td>
+                    <td *ngIf="consecutivo.editMode && !consecutivo.prefijoDisponible"><input type="text" value="-" (load)="consecutivo.prefijo='-'" readonly></td> -->
+
+                    <td *ngIf="!desechable.editMode">{{desechable.nombre}}</td>
+                    <td *ngIf="desechable.editMode"><input type="text" [(ngModel)]="desechable.nombre"></td>
+
+                    <td *ngIf="!desechable.editMode">{{desechable.cantidad}}</td>
+                    <td *ngIf="desechable.editMode"><input type="text" [(ngModel)]="desechable.cantidad"></td>
+
+                    <td *ngIf="!desechable.editMode">{{desechable.restaurante}}</td>
+                    <td *ngIf="desechable.editMode">
+                        <select name="" id="" [(ngModel)]="desechable.restaurante">
+                            <option [value]="desechable.restaurante">{{desechable.restaurante}}</option>
+                            <option value="RESTAURANTE 2">RESTAURANTE 2</option>
+                            <option value="Mi Rest 03">Mi Rest 03</option>
+                        </select>
+                    </td>
+                
+                    <td>
+                        <button (click)="toggleEditMode(desechable)" class="btn btn-primary">Modificar</button>
+                        <button (click)="eliminar(desechable)" class="btn btn-danger">Eliminar</button>
+                        <button *ngIf="desechable.editMode" (click)="actualizar(desechable)" class="btn btn-success">Acpetar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

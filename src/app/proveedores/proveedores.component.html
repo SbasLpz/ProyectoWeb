@@ -1,0 +1,61 @@
+<p>proveedores works!</p>
+
+<div>
+    <h2>Mantenimiento Proveedores</h2>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Télefono Oficina</th>
+                <th>Correo</th>
+                <th>Célular</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (proveedor of proveedores; track $index) {
+                <tr >
+                    <td *ngIf="!proveedor.editMode">{{proveedor.codigo}}</td>
+                    <td *ngIf="proveedor.editMode">
+                        <select name="" id="" [(ngModel)]="proveedor.codigo">
+                            @for (consec of consecutivos; track $index) {
+                                <option [value]="consec.prefijo">{{consec.prefijo}}</option>
+                            }
+                        </select>
+                    </td>
+                    <!-- <td style="text-transform: uppercase;" *ngIf="!consecutivo.editMode">{{consecutivo.prefijo}}</td>
+                    <td *ngIf="consecutivo.editMode && consecutivo.prefijoDisponible"><input style="text-transform: uppercase;" maxlength="5" (input)="consecutivoValido($event)" type="text" [(ngModel)]="consecutivo.prefijo"></td>
+                    <td *ngIf="consecutivo.editMode && !consecutivo.prefijoDisponible"><input type="text" value="-" (load)="consecutivo.prefijo='-'" readonly></td> -->
+
+                    <td *ngIf="!proveedor.editMode">{{proveedor.proveedor}}</td>
+                    <td *ngIf="proveedor.editMode"><input type="text" [(ngModel)]="proveedor.proveedor"></td>
+
+                    <td *ngIf="!proveedor.editMode">{{proveedor.primerApellido}}</td>
+                    <td *ngIf="proveedor.editMode"><input type="text" [(ngModel)]="proveedor.primerApellido"></td>
+
+                    <td *ngIf="!proveedor.editMode">{{proveedor.segundoApellido}}</td>
+                    <td *ngIf="proveedor.editMode"><input type="text" [(ngModel)]="proveedor.segundoApellido"></td>
+
+                    <td *ngIf="!proveedor.editMode">{{proveedor.telOficina}}</td>
+                    <td *ngIf="proveedor.editMode"><input type="text" [(ngModel)]="proveedor.telOficina"></td>
+
+                    <td *ngIf="!proveedor.editMode">{{proveedor.correo}}</td>
+                    <td *ngIf="proveedor.editMode"><input type="text" [(ngModel)]="proveedor.correo"></td>
+
+                    <td *ngIf="!proveedor.editMode">{{proveedor.telPersonal}}</td>
+                    <td *ngIf="proveedor.editMode"><input type="text" [(ngModel)]="proveedor.telPersonal"></td>
+                
+                    <td>
+                        <button (click)="toggleEditMode(proveedor)" class="btn btn-primary">Modificar</button>
+                        <button (click)="eliminar(proveedor)" class="btn btn-danger">Eliminar</button>
+                        <button *ngIf="proveedor.editMode" (click)="actualizar(proveedor)" class="btn btn-success">Acpetar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
